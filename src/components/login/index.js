@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import  {connect} from 'react-redux';
+import {googleLogin, twitterLogin} from '../../redux/actions/user/userActions';
 
 class Login extends Component {
 
@@ -15,7 +17,7 @@ class Login extends Component {
 
             <div className="col-sm-6">
 
-              <button className="btn btn-danger btn-lg">
+              <button className="btn btn-danger btn-lg" onClick={this.props.googleLogin}>
                 Login with Google
               </button>
 
@@ -23,7 +25,7 @@ class Login extends Component {
 
             <div className="col-sm-6">
 
-              <button className="btn btn-primary btn-lg">
+              <button className="btn btn-primary btn-lg" onClick={this.props.twitterLogin}>
                 Login with Twitter
               </button>
 
@@ -34,4 +36,7 @@ class Login extends Component {
   }
 }
 
-export default Login;
+
+
+
+export default connect(null, {googleLogin, twitterLogin}) (Login);

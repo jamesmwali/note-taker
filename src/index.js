@@ -8,8 +8,11 @@ import {applyMiddleware, createStore} from 'redux'; // ? Create a redux store;
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {BrowserRouter, Link, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Login from './components/login';
+import Header from './utilities/routes/header';
+import LoadingComponent from './components/loader';
+import AuthenticatedComponent from './components/authenticated'
 
 // * Redux store imports
 
@@ -21,51 +24,29 @@ import Login from './components/login';
 const store = createStore(rootReducer,
     composeWithDevTools(applyMiddleware(thunk)));
 
-// ? Creating Navigation
-
-const Header = () => (
-    <nav className="navbar navbar-default">
-      <div className="container-fluid">
-
-        <div className="navbar-header">
-
-          <button type="button" className="navbar-toggle" data-toggle="collapse"
-                  data-target="#myNavBar">
-            <span className="icon-bar"/>
-            <span className="icon-bar"/>
-            <span className="icon-bar"/>
-          </button>
-          <Link className="navbar-brand" to="/">DIARY 2019</Link>
-        </div>
-
-        <div className="collapse navbar-collapse" id="myNavBar">
-          <ul className="nav navbar-nav navbar-right">
-            <li><Link to="/login">Login</Link></li>
-          </ul>
-        </div>
-      </div>
-
-    </nav>
-);
-
 // ! Step 2 - provide the store reducers to react
 
 ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
-        <div>
-          <Header/>
-          <Switch>
-            <Route path="/" render={() =>
-                <App/>
-            } exact={true}/>
+        <LoadingComponent>
+          <div>
+            <Header/>
+            <Switch>
+              <Route path="/login" render={() =>
+                  <Login/>
+              } exact={true}/>
 
-            <Route path="/login" render={() =>
-                <Login/>
-            } exact={true}/>
+              <AuthenticatedComponent>
+                <Route path="/" render={() =>
+                    <App/>
+                } exact={true}/>
+              </AuthenticatedComponent>
 
-          </Switch>
-        </div>
+
+            </Switch>
+          </div>
+        </LoadingComponent>
 
       </BrowserRouter>
     </Provider>, document.getElementById('root'));
