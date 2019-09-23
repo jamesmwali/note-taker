@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import notesReducer from './notesReducer';
+import notesReducer from './notes/notesReducer';
 
 
 const rootReducer = combineReducers({

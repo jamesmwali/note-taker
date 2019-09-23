@@ -16,6 +16,20 @@ firebase.initializeApp(firebaseConfig);
 
 export const database = firebase.database().ref('/notes');
 
+// ? Firebase Authentication creation.
+
+// ? Auth instance
+export const auth = firebase.auth();
+
+// * Google instance
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+// * Twitter instance
+export const twitterProvider = new firebase.auth.TwitterAuthProvider();
+
+
+
+
 
 
 

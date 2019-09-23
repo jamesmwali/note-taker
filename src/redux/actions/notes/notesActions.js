@@ -1,5 +1,5 @@
-import {GET_NOTES} from '../actionTypes';
-import {database} from '../../utilities/firebase';
+import {GET_NOTES} from '../../actionTypes';
+import {database} from '../../../utilities/firebase';
 
 export function getNotes(){
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {clearForm} from '../utilities';
 import * as _ from 'lodash';
 import {connect} from 'react-redux';
-import {getNotes, saveNote,deleteNote} from '../redux/actions/notesActions';
+import {getNotes, saveNote,deleteNote} from '../redux/actions/notes/notesActions';
 import NoteCard from '../components/note-card'
 
 class App extends Component {
