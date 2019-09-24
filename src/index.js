@@ -31,13 +31,13 @@ ReactDOM.render(
       <BrowserRouter>
         <LoadingComponent>
           <div>
-            <Header/>
             <Switch>
+
               <Route path="/login" render={() =>
                   <Login/>
               } exact={true}/>
-
               <AuthenticatedComponent>
+                <Header/>
                 <Route path="/" render={() =>
                     <App/>
                 } exact={true}/>
