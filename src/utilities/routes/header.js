@@ -42,7 +42,11 @@ class Header extends Component {
                     </li> )
                     :
                     ( <li>
-                      <Link to="/logout" onClick={()=>this.props.logout()}>
+                      <Link to="/logout" onClick={()=> {
+                        this.props.logout();
+                        window.location.replace("/logout");
+
+                      }}>
                         Logout
                       </Link>
                     </li> )
