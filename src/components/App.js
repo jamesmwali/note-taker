@@ -93,6 +93,7 @@ class App extends Component {
                 </div>
 
               </form>
+              <br/>
               {this.renderNotes()}
             </div>
           </div>
