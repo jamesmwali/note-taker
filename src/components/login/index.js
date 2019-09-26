@@ -30,7 +30,6 @@ class Login extends Component {
 
 
   componentWillReceiveProps(nextProps) {
-    console.log("login");
 
     if (nextProps.user !== null) {
       this.props.history.push('/');

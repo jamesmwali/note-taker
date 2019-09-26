@@ -12,7 +12,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Login from './components/login';
 import Header from './utilities/routes/header';
 import LoadingComponent from './components/loader';
-import AuthenticatedComponent from './components/authenticated'
+import AuthenticatedComponent from './components/authenticated';
+import NoteDetail from './components/note-detail'
 
 // * Redux store imports
 
@@ -36,8 +37,14 @@ ReactDOM.render(
               <Route path="/login" render={() =>
                   <Login/>
               } exact={true}/>
+
               <AuthenticatedComponent>
                 <Header/>
+
+                <Route path="/note/:id" render={() =>
+                    <NoteDetail/>
+                } exact={true}/>
+
                 <Route path="/" render={() =>
                     <App/>
                 } exact={true}/>

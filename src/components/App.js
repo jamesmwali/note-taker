@@ -2,18 +2,25 @@ import React, {Component} from 'react';
 import {clearForm} from '../utilities';
 import * as _ from 'lodash';
 import {connect} from 'react-redux';
-import {getNotes, saveNote,deleteNote} from '../redux/actions/notes/notesActions';
+import {
+  deleteNote,
+  getNotes,
+  saveNote,
+} from '../redux/actions/notes/notesActions';
 import NoteCard from '../components/note-card';
 import {getUser} from '../redux/actions/user/userActions';
+import {Link} from 'react-router-dom';
+import environment from '../utilities/environments'
+
 
 class App extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       form: {},
-      notes: {}
-    }
+      notes: {},
+    };
   }
 
   handleChange(e) {
@@ -21,7 +28,7 @@ class App extends Component {
     let {form} = this.state;
 
     form = Object.assign(form, {[name]: value});
-    this.setState({form})
+    this.setState({form});
 
   }
 
@@ -31,30 +38,38 @@ class App extends Component {
 
     let notes = {
       title: form.title,
-      body: form.body
+      body: form.body,
+      uid: this.props.user.uid,
     };
 
     //? database.push(notes);
     // ? replaced with a function from the redux actions.
 
     this.props.saveNote(notes);
-    this.setState({form: {}}, ()=>clearForm(this))
+    this.setState({form: {}}, () => clearForm(this));
 
   }
 
-
-  renderNotes(){
+  renderNotes() {
 
     return _.map(this.props.notes, (note, index) => {
 
       return (
           <NoteCard key={index}>
-            <h2>{note.title}</h2>
+            <Link to={`note/${index}`}>
+              <h2>{note.title}</h2>
+            </Link>
+
             <p>{note.body}</p>
-            <button className="btn btn-danger" onClick={()=>this.props.deleteNote(index)}>Delete</button>
+
+            {note.uid === this.props.user.uid &&
+
+            <button className="btn btn-danger"
+                    onClick={() => this.props.deleteNote(index)}>Delete</button>
+            }
           </NoteCard>
-      )
-    })
+      );
+    });
 
   }
 
@@ -63,14 +78,18 @@ class App extends Component {
     //?  function from the redux actions.
     // this.props.getNotes();
     // this.props.getUser();
+    console.log(environment)
   }
 
   render() {
+
+
     return (
         <div className="container-fluid" style={{paddingTop: 20}}>
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3">
-              <form onSubmit={this.handleSubmit.bind(this)} style={{paddingBottom: 20}}>
+              <form onSubmit={this.handleSubmit.bind(this)}
+                    style={{paddingBottom: 20}}>
                 <div className="form-group">
 
                   <input type="text" name="title" value={this.state.form.title}
@@ -89,7 +108,7 @@ class App extends Component {
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary col-sm-12"> Save </button>
+                  <button className="btn btn-primary col-sm-12"> Save</button>
                 </div>
 
               </form>
@@ -102,16 +121,14 @@ class App extends Component {
   }
 }
 
-
-
-
-function mapStateToProps (state,ownProps) {
+function mapStateToProps(state, ownProps) {
   return {
     notes: state.notes,
-    user: state.user
-  }
+    user: state.user,
+  };
 }
 
 //?  function from the redux actions.
 
-export default connect(mapStateToProps, {getNotes, saveNote, deleteNote,getUser})(App);
+export default connect(mapStateToProps,
+    {getNotes, saveNote, deleteNote, getUser})(App);
