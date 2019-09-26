@@ -10,7 +10,7 @@ import {
 import NoteCard from '../components/note-card';
 import {getUser} from '../redux/actions/user/userActions';
 import {Link} from 'react-router-dom';
-import environment from '../utilities/environments'
+import environment from '../../environment-variables'
 
 
 class App extends Component {
@@ -78,7 +78,6 @@ class App extends Component {
     //?  function from the redux actions.
     // this.props.getNotes();
     // this.props.getUser();
-    console.log(environment)
   }
 
   render() {

@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import environment from './environments'
+import environment from '../../environment-variables'
 
 /* Your web app's Firebase configuration*/
 
