@@ -1,15 +1,15 @@
 import * as firebase from 'firebase';
-import environment from '../../environment-variables'
+import environment from '../environment-variables';
 
 /* Your web app's Firebase configuration*/
 
 var firebaseConfig = {
   apiKey: `${environment.apiKey}`,
-  authDomain: 'diary-be7e6.firebaseapp.com',
-  databaseURL: 'https://diary-be7e6.firebaseio.com',
-  projectId: 'diary-be7e6',
+  authDomain: `${environment.authDomain}`,
+  databaseURL: `${environment.databaseURL}`,
+  projectId: `${environment.projectId}`,
   storageBucket: '',
-  messagingSenderId: '799850848079',
+  messagingSenderId: `${environment.messagingSenderId}`,
   appId: `${environment.appId}`,
 };
 // ? Initialize Firebase

@@ -10,7 +10,6 @@ import {
 import NoteCard from '../components/note-card';
 import {getUser} from '../redux/actions/user/userActions';
 import {Link} from 'react-router-dom';
-import environment from '../../environment-variables'
 
 
 class App extends Component {
